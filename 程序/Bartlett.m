@@ -1,0 +1,14 @@
+Fs=256;
+Nsec=256;
+n=0:896-1;
+t=n/Fs;
+w=hanning(256);
+y=ave_P4;
+pxx1=abs(fft(w*y(1:256),Nsec).^2)/Nsec;
+pxx2=abs(fft(w*y(129:384),Nsec).^2)/Nsec;
+pxx3=abs(fft(w*y(257:512),Nsec).^2)/Nsec;
+pxx4=abs(fft(w*y(385:640),Nsec).^2)/Nsec;
+pxx5=abs(fft(w*y(513:768),Nsec).^2)/Nsec;
+pxx6=abs(fft(w*y(641:896),Nsec).^2)/Nsec;
+Pxx=10*log10((pxx1+pxx2+pxx3+pxx4+pxx5+pxx6)/6);
+f=(0:length(Pxx)-1)*Fs/length(Pxx);

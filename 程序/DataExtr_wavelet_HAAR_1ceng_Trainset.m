@@ -1,0 +1,28 @@
+load ('D:\dataSet\dataSet\6channels.mat');
+X=mean(channe1_cueN,1);
+Y=mean(channe1_cueP,1);
+subplot(411);
+plot(X);
+hold on;
+plot(Y);
+title('通道1原始信号');
+[CA_N,CD_N]=dwt(X,'haar');
+[CA_P,CD_P]=dwt(Y,'haar');
+subplot(412);
+plot(CA_N,'r');
+hold on;
+plot(CA_P,'b');
+title('通道1低频系数');
+subplot(413);
+plot(CD_N,'r');
+hold on;
+plot(CD_P,'b');
+title('通道1高频系数');
+RX_N=idwt(CA_N,[],'haar');
+RX_P=idwt(CA_P,[],'haar');
+subplot(414);
+plot(RX_N,'r');
+hold on;
+plot(RX_P,'b');
+title('通道1重构信号');
+
